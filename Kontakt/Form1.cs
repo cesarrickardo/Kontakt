@@ -55,7 +55,7 @@ namespace Kontakt
             {
                 if (Information.SelectedIndex >=0)
                 {
-                    Person obj2 = ppl[Information.SelectedIndex];
+                    Person obj2 = (Person)Information.SelectedItem;
                     using (var dbContext = new PersonContext())
                     {
                         dbContext.Entry(obj2).State = System.Data.Entity.EntityState.Deleted;
@@ -95,7 +95,7 @@ namespace Kontakt
                 foreach (var item in context.contact)
                 {
                     ppl.Add(item);
-                    Information.Items.Add(item.PersonId + " " + item.Name);
+                    Information.Items.Add(item);
                 }
             }
         }
@@ -103,15 +103,12 @@ namespace Kontakt
         private void Information_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {
-                string contact = Information.SelectedItem.ToString();
-                contact.Split(' ');
-                string id = contact[0].ToString();
-                int id2 = int.Parse(id);
+            {   // 
+                Person contact = (Person)Information.SelectedItem;
                 using (var context = new PersonContext())
                 {
                     var character = (from s in context.contact
-                                     where s.PersonId == id2
+                                     where s.PersonId == contact.PersonId
                                      select s).First();
                     txtName.Text = character.Name;
                     txtAddres.Text = character.Addres;
@@ -163,7 +160,7 @@ namespace Kontakt
                                     select s).ToList();
                     foreach (var item in resultat)
                     {
-                        Information.Items.Add(item.Name);
+                        Information.Items.Add(item);
                     }
                  }
             }
