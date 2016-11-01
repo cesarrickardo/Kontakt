@@ -51,14 +51,40 @@ namespace Kontakt
         }
         private void cmdRemove_Click(object sender, EventArgs e)
         {
-            Person obj2 = ppl[Information.SelectedIndex];
-            using (var dbContext = new PersonContext())
+            try
             {
-                dbContext.Entry(obj2).State = System.Data.Entity.EntityState.Deleted;
-                dbContext.SaveChanges();
+                if (Information.SelectedIndex >=0)
+                {
+                    Person obj2 = ppl[Information.SelectedIndex];
+                    using (var dbContext = new PersonContext())
+                    {
+                        dbContext.Entry(obj2).State = System.Data.Entity.EntityState.Deleted;
+                        dbContext.SaveChanges();
+                    }
+                    ClearTextBox();
+                    Update();
+                }
+                //Person obj2 = ppl[Information.SelectedIndex];
+                //using (var dbContext = new PersonContext())
+                //{
+                //    dbContext.Entry(obj2).State = System.Data.Entity.EntityState.Deleted;
+                //    dbContext.SaveChanges();
+                //}
+                //ClearTextBox();
+                //Update();
             }
-            ClearTextBox();
-            Update();
+            catch(Exception ex)
+            {
+                MessageBox.Show( "" + ex);
+            }
+            //Person obj2 = ppl[Information.SelectedIndex];
+            //using (var dbContext = new PersonContext())
+            //{
+            //    dbContext.Entry(obj2).State = System.Data.Entity.EntityState.Deleted;
+            //    dbContext.SaveChanges();
+            //}
+            //ClearTextBox();
+            //Update();
         }
         private void Update()
         {
@@ -129,14 +155,17 @@ namespace Kontakt
         {
             using (var context = new PersonContext())
             {
+                Information.Items.Clear();
                 if (cmdSearch != null)
                 {
                     var resultat = (from s in context.contact
-                                    where s.Name.Contains(txtSearch.Text)
-                                    select s).First();
-                    Information.Items.Clear();
-                    Information.Items.Add(resultat);
-                }
+                                    where s.Name.ToLower().Contains(txtSearch.Text)
+                                    select s).ToList();
+                    foreach (var item in resultat)
+                    {
+                        Information.Items.Add(item.Name);
+                    }
+                 }
             }
         }
     }
