@@ -97,8 +97,9 @@ namespace inlämningsupg_2_test
             // Button 4 OK ?!?!
             if (Button == 4)
             {
+                  
                 #region
-                using (SqlConnection connection = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes"))
+                using (SqlConnection connection = new SqlConnection(connString))
                 using (SqlCommand command = connection.CreateCommand())
                 {
                    command.CommandText = "Select * from tblCustomerChanges";
