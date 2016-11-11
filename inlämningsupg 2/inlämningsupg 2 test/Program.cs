@@ -11,7 +11,7 @@ namespace inlämningsupg_2_test
     class Program
     {
 
-     public static string connString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+    public static string connString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
 
         static void Main(string[] args)
         {
