@@ -1,13 +1,4 @@
-﻿USE [NORTHWND]
-GO
-
-/****** Object:  Table [dbo].[tblCustomerChanges]    Script Date: 2016-11-11 15:39:16 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
+﻿
 CREATE TABLE [dbo].[tblCustomerChanges](
 	[CustomerID] [nchar](5) NOT NULL,
 	[ContactNameOLD] [nvarchar](40) NOT NULL,
