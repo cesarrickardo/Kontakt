@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 namespace inlämningsupg_2_test
 {
     class Program
     {
 
+     public static string connString = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
 
         static void Main(string[] args)
         {
@@ -33,8 +35,8 @@ namespace inlämningsupg_2_test
                 Console.WriteLine("Add your name");
                 string Name = Console.ReadLine();
 
-                string cns = @"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes";
-                SqlConnection cn = new SqlConnection(cns);
+              //  string cns = @"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes";
+                SqlConnection cn = new SqlConnection(connString);
                 cn.Open();
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -55,8 +57,9 @@ namespace inlämningsupg_2_test
                 Console.WriteLine("Add price");
                 string Price = Console.ReadLine();
 
-                string cns = @"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes";
-                SqlConnection cn = new SqlConnection(cns);
+                //  string cns = @"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes";
+                SqlConnection cn = new SqlConnection(connString);
+
                 cn.Open();
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -77,8 +80,8 @@ namespace inlämningsupg_2_test
                 Console.WriteLine("Add price");
                 var Price = Console.ReadLine();
 
-                string cns = @"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes";
-                SqlConnection cn = new SqlConnection(cns);
+              //  string cns = @"Server=(localdb)\MSSQLLocalDB;Database=NORTHWND;Trusted_Connection=Yes";
+                SqlConnection cn = new SqlConnection(connString);
                 cn.Open();
                 SqlCommand cmd = cn.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
