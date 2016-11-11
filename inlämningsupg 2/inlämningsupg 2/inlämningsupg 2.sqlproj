@@ -64,6 +64,7 @@
     <Folder Include="dbo\Views\" />
     <Folder Include="Security\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\triggers" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Orders.sql" />
@@ -112,5 +113,6 @@
     <Build Include="dbo\Stored Procedures\CustOrderHist.sql" />
     <Build Include="dbo\Stored Procedures\SalesByCategory.sql" />
     <Build Include="dbo\Tables\tblCustomerChanges.sql" />
+    <Build Include="dbo\triggers\headbutton.sql" />
   </ItemGroup>
 </Project>
